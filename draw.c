@@ -221,18 +221,8 @@ void drawSurface(int e_u, int e_v, void (*genVertex)(float, float, float*))
   }
 }
 
-void genCylinder2Vertex(float i, float j, float *vertex){
-	float x = cos(2.0*M_PI*i);
-	float y = -1.0 +2.0*j;
-	float z = sin(2.0*M_PI*i);
-
-	vertex[0] = x;
-	vertex[1] = y;
-	vertex[2] = z;
-}
-
 void genPlaneta(float i, float j, float *vertex){
-	float y = -1.0 +2.0*j;
+	float y = -1.0 + 2.0*j;
     float r = sqrt(1.0 - y*y);
 	float x = r*cos(2.0*M_PI*i);
 	float z = r*sin(2.0*M_PI*i);
@@ -336,7 +326,7 @@ void drawPlaneta() {
      glBindTexture(GL_TEXTURE_2D, texturas[3]);
      glRotatef(-40, 0.0, 0.0, 1.0);
      glScalef(1.005, 0.1, 1.005);
-     drawSurface(16, 1, genCylinder2Vertex);
+     drawSurface(16, 1, genCylinderVertex);
   glPopMatrix();
 }
 
@@ -496,26 +486,6 @@ void genCasa(float i, float j, float *vertex){
 	vertex[2] = z;
 }
 
-/*void genCylinderVertex(float i, float j, float *vertex){
-	float x = cos(2.0*M_PI*i);
-	float y = -1.0 +2.0*j;
-	float z = sin(2.0*M_PI*i);
-
-	vertex[0] = x;
-	vertex[1] = y;
-	vertex[2] = z;
-}*/
-
-/*void genPlaneVertex(float i, float j, float *vertex){
-	float x = -1.0 + 2.0*i;
-	float y = -1.0 + 2.0*j;
-	float z = 0;
-
-	vertex[0] = x;
-	vertex[1] = y;
-	vertex[2] = z;
-}*/
-
 //Circulo
 void drawPreenche2(void) {
     int linhas = 20;
@@ -592,24 +562,6 @@ void drawCylinder(){
         }
     }
 }
-
-//desenha cubo
-/*void drawCube(){
-    int i;
-    glRotatef(90,0.0,1.0,0.0);
-    for (i = 0; i < 6; i++) {
-      glBegin(GL_QUADS);
-
-        glVertex3fv(&v[faces[i][0]][0]);
-        glVertex3fv(&v[faces[i][1]][0]);
-        glVertex3fv(&v[faces[i][2]][0]);
-        glVertex3fv(&v[faces[i][3]][0]);
-
-      glEnd();
-    }
-    glPopMatrix();
-}*/
-
 
 //cria a casa
 void drawCasa(){
@@ -945,8 +897,6 @@ void drawCar()
   int i;
   float angle = (360.0/2.0)*glutGet(GLUT_ELAPSED_TIME)/10000.0;
 glPushMatrix();
-  //glTranslatef(-0.9, -0.5, -5.0);
-  //glRotatef(angle, 0.0, -1.0, 0.0);
 
 //---------------------------FRONT-----------------------------------//
   for (i = 0; i < 6; i++) {
